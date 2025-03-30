@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     unstash 'data_csv'
-                    sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d data/data.csv'
+                    sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d data_csv'
                 }
             }
         }
