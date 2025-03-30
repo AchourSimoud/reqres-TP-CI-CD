@@ -9,7 +9,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'pip3 install --user -r requirements.txt'
+                    sh 'pip3 install --upgrade -r requirements.txt --user'
                     sh 'echo "pip list'
                 }
             }
