@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "3b187f8d-f4e0-4a23-a98b-3666357e985d",
+		"name": "register",
+		"description": "# About this collection\n\nThis collection helps you set up contract tests to ensure that two separate systems are compatible and can communicate with one another.\n\n## **Using the collection**\n\n**Step 1:** Send the sample requests and view the response and test results.\n\n**Step 2:** Replace the sample request URLs with your desired API endpoints.\n\n**Step 3:** Customize the tests in the \"Tests\" tab if needed. Don't forget to save your changes.\n\n### Resources\n\n[Scripting in Postman](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/)\n\n[Test script examples](https://learning.postman.com/docs/writing-scripts/script-references/test-examples/)\n\n[Postman Sandbox API reference](https://learning.postman.com/docs/sending-requests/grpc/postman-sandbox-api/#writing-assertions)\n\n[Using the Collection Runner](https://learning.postman.com/docs/collections/running-collections/intro-to-collection-runs/)\n\n[  \n](https://postman.postman.co/documentation/24552533-5bead607-0197-4e1d-87d4-3160bc7631c1?entity=&branch=&version=)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39706519"
+	},
+	"item": [
+		{
+			"name": "get user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Test du status de la réponse\", function () {",
+							"    pm.response.to.have.status(200); ",
+							"});",
+							"",
+							"pm.test(\"Test du id\", function () {",
+							"    let expectedId = pm.iterationData.get(\"id\");",
+							"    pm.expect(pm.response.json().data.id).to.eql(expectedId);",
+							"});",
+							"",
+							"pm.test(\"Test de l'email\", function () {",
+							"    let expectedEmail = pm.iterationData.get(\"email\");",
+							"    pm.expect(pm.response.json().data.email).to.eql(expectedEmail);",
+							"});",
+							"",
+							"pm.test(\"Test du first name\", function () {",
+							"    let expectedFirstName = pm.iterationData.get(\"first_name\");",
+							"    pm.expect(pm.response.json().data.first_name).to.eql(expectedFirstName);",
+							"});",
+							"",
+							"pm.test(\"Test du last name\", function () {",
+							"    let expectedLastName = pm.iterationData.get(\"last_name\");",
+							"    pm.expect(pm.response.json().data.last_name).to.eql(expectedLastName);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/users/{{id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
