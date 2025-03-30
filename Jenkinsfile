@@ -9,8 +9,8 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'pip freeze > requirements.txt'
-                    sh 'pip3 install --upgrade -r requirements.txt --user'
+                    sh 'sudo pip freeze > requirements.txt'
+                    sh 'sudo pip3 install --upgrade -r requirements.txt --user'
                     sh 'echo "pip list'
                 }
             }
