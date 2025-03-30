@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sh 'mkdir -p $WORKSPACE/newman_data'
                     sh 'chmod -R 777 $WORKSPACE/newman_data'
-                    unstash 'data-csv'
+                    unstash 'data_csv'
                     sh 'chmod -R 777 $WORKSPACE/data'
 
                     // Déplacer le fichier au bon endroit
