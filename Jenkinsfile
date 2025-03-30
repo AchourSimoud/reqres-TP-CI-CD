@@ -28,8 +28,11 @@ pipeline {
             }
             steps {
                 script {
+                    sh 'mkdir -p newman_data'
                     unstash 'data_csv'
-                    sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d data_csv'
+                    sh 'mv data/data.csv newman_data/data.csv'
+
+                    sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d newman_data/data.csv'
                 }
             }
         }
