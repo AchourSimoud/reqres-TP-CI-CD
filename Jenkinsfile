@@ -28,7 +28,7 @@ pipeline {
             }
             steps {
                 script {
-                    unstash 'data-csv'
+                    unstash 'data_csv'
                     sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d data/data.csv'
                 }
             }
