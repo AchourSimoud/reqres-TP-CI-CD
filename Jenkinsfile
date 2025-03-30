@@ -5,12 +5,12 @@ pipeline {
             agent {
                 docker {
                     image 'python:3.11'
+                    args '--user root'
                 }
             }
             steps {
                 script {
-                    sh 'sudo pip freeze > requirements.txt'
-                    sh 'sudo pip3 install --upgrade -r requirements.txt --user'
+                    sh 'sudo pip3 install -r requirements.txt'
                     sh 'echo "pip list'
                 }
             }
