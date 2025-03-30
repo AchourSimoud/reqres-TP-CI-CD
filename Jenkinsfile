@@ -3,19 +3,20 @@ pipeline {
     stages {
         stage('Python Stage') {
             agent {
-                docker {
-                    image 'python:3.11'
-                    args '--user root'
-                }
+            docker {
+                image 'python:3.11'
+                args '--user root'
+            }
             }
             steps {
-                script {
-                    sh ' python -m venv venv '
-                    sh'. venv/bin/activate' 
-                    sh'pip install --upgrade pip' 
-                    sh'pip install -r requirements.txt'  
-                    sh 'python3 scripts/Dataprep.py'
-                }
+            script {
+                sh ' python -m venv venv '
+                sh '. venv/bin/activate' 
+                sh 'pip install --upgrade pip' 
+                sh 'pip install -r requirements.txt'  
+                sh 'python3 scripts/Dataprep.py'
+                stash includes: 'data/data.csv', name: 'data_csv'
+            }
             }
         }
         stage('Newman Stage') {
