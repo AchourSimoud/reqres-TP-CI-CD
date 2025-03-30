@@ -12,7 +12,7 @@ pipeline {
                 script {
                     sh '''
                         python -m venv venv  # Création de l'environnement virtuel
-                        source venv/bin/activate  # Activation du venv
+                        . venv/bin/activate  # Activation du venv
                         pip install --upgrade pip  # Mise à jour de pip
                         pip install -r requirements.txt  # Installation des dépendances
                     '''
