@@ -9,8 +9,8 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'python --version'
-                    sh 'echo "Running Python stage..."'
+                    sh 'pip install -r requirements.txt'
+                    sh 'echo "pip list'
                 }
             }
         }
@@ -23,8 +23,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'newman --version'
-                    sh 'echo "Running Newman stage..."'
+                    sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d data/data.csv'
                 }
             }
         }
