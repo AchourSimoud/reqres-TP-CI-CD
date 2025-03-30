@@ -14,7 +14,7 @@ pipeline {
                     sh'. venv/bin/activate' 
                     sh'pip install --upgrade pip' 
                     sh'pip install -r requirements.txt'  
-                    sh 'pip list'
+                    sh 'python3 scripts/Dataprep.py'
                 }
             }
         }
