@@ -18,6 +18,7 @@ pipeline {
             agent {
                 docker {
                     image 'postman/newman:alpine'
+                    args "--entrypoint=''"
                 }
             }
             steps {
