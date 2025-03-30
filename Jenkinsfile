@@ -28,12 +28,19 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'mkdir -p newman_data'
-                    unstash 'data_csv'
-                    sh 'mv data/data2.csv newman_data/data2.csv'
+                    sh 'mkdir -p $WORKSPACE/newman_data'
+                    sh 'chmod -R 777 $WORKSPACE/newman_data'
+                    unstash 'data-csv'
+                    sh 'chmod -R 777 $WORKSPACE/data'
 
-                    sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d newman_data/data2.csv'
-                }
+                    // Déplacer le fichier au bon endroit
+                    sh 'mv $WORKSPACE/data/data.csv $WORKSPACE/newman_data/data.csv'
+
+                    // Vérifier la présence du fichier
+                    sh 'ls -lR $WORKSPACE/newman_data'
+
+                    // Exécuter Newman avec le fichier CSV
+                    sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d $WORKSPACE/newman_data/data.csv'   }
             }
         }
     }
