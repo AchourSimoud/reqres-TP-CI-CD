@@ -9,9 +9,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'python -m venv venv'
-                    sh 'source venv/bin/activate'
-                    sh 'pip install --user -r requirements.txt'
+                    sh 'pip3 install --user -r requirements.txt'
                     sh 'echo "pip list'
                 }
             }
