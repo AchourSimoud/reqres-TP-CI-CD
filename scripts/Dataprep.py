@@ -56,5 +56,5 @@ class Dataprep:
     
         
 if __name__ == "__main__":
-    data_prep = Dataprep("data/data.csv")  # Provide the filename
+    data_prep = Dataprep("data/data2.csv")  # Provide the filename
     data_prep.CreatData()
