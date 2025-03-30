@@ -15,7 +15,7 @@ pipeline {
                 sh 'pip install --upgrade pip' 
                 sh 'pip install -r requirements.txt'  
                 sh 'python3 scripts/Dataprep.py'
-                stash includes: 'data/data.csv', name: 'data.csv'
+                stash includes: 'data/data.csv', name: 'data_csv'
             }
             }
         }
@@ -28,6 +28,7 @@ pipeline {
             }
             steps {
                 script {
+                    unstash 'data-csv'
                     sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d data/data.csv'
                 }
             }
