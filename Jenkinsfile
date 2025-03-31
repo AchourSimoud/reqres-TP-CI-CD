@@ -29,6 +29,7 @@ pipeline {
             steps {
                 script {
                     unstash 'data_csv'
+                    sh 'chmod 775 data/data2.csv'
                     // Exécuter Newman
                     sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d data/data2.csv'
                 }
