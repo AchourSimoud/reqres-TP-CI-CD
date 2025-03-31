@@ -16,7 +16,7 @@ pipeline {
                 sh 'pip install -r requirements.txt'  
                 sh 'python3 scripts/Dataprep.py'
                 //stash includes: 'data/data2.csv', name: 'data_csv'
-                sh 'mv data/data2.csv $WORKSPACE/data2.csv'
+                sh 'mv data/data.csv $WORKSPACE/data.csv'
 
             }
             }
@@ -32,7 +32,7 @@ pipeline {
                 script {
                     //unstash 'data_csv'
                     // Exécuter Newman
-                    sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d $WORKSPACE/data2.csv'
+                    sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d $WORKSPACE/data.csv'
                 }
             }
         }
