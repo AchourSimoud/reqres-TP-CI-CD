@@ -1,4 +1,5 @@
 import pandas as pd
+import random
 
 class Dataprep:
     full_data = [
@@ -50,11 +51,11 @@ class Dataprep:
         self.path = path
     
     def CreatData(self):
-        data = pd.DataFrame(Dataprep.full_data).sample(frac=0.5, random_state=42)
+        data = pd.DataFrame(Dataprep.full_data).sample(frac=0.5, random_state=random.randint(1, 100))
         data.to_csv(self.path, index=False) 
         
     
         
 if __name__ == "__main__":
-    data_prep = Dataprep("data/data2.csv")  # Provide the filename
+    data_prep = Dataprep("data/data.csv")  # Provide the filename
     data_prep.CreatData()
