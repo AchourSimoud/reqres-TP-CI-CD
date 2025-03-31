@@ -15,7 +15,9 @@ pipeline {
                 sh 'pip install --upgrade pip' 
                 sh 'pip install -r requirements.txt'  
                 sh 'python3 scripts/Dataprep.py'
-                stash includes: 'data/data2.csv', name: 'data_csv'
+                //stash includes: 'data/data2.csv', name: 'data_csv'
+                sh 'mv data/data2.csv $WORKSPACE/data2.csv'
+
             }
             }
         }
@@ -29,9 +31,8 @@ pipeline {
             steps {
                 script {
                     unstash 'data_csv'
-                    sh 'chmod 775 data/data2.csv'
                     // Exécuter Newman
-                    sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d data/data2.csv'
+                    sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d $WORKSPACE/data2.csv'
                 }
             }
         }
