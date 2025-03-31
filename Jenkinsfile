@@ -30,7 +30,7 @@ pipeline {
             }
             steps {
                 script {
-                    unstash 'data_csv'
+                    //unstash 'data_csv'
                     // Exécuter Newman
                     sh 'newman run collections/register_collection.json -e collections/testENV_environment.json -d $WORKSPACE/data2.csv'
                 }
