@@ -16,7 +16,6 @@ pipeline {
                 sh 'pip install -r requirements.txt'  
                 sh 'python3 scripts/Dataprep.py'
                 stash includes: 'data/data.csv', name: 'data_csv'
-                //sh 'mv data/data.csv $WORKSPACE/data.csv'
 
             }
             }
